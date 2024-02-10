@@ -1,7 +1,9 @@
-import React from "react";
+import h from "components/htm_helper"
 
 const hello = () => {
-  return React.createElement("h1", null, "Hey Root");
+  return(
+    h`<h1>Hello from htm</h1>`
+  )
 }
 
 export default hello
