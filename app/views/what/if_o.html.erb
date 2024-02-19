@@ -1,0 +1,28 @@
+<div>
+  <h1 class="font-bold text-4xl">What#if_o.co</h1>
+
+  <%= form_with(url: what_if_o_path , method: :get) do |form| %>
+    <%= form.label :letter, "letter" %>
+    <%= form.select :letter, options_for_select(["a", "e", "i", "o", "u"], selected: params.fetch(:letter, "o")) %>
+
+    <%= form.label :name, "Name" %>
+    <%= form.text_field :name, value: params[:name] %>
+    <%= form.submit %>
+  <% end %>
+
+  <% if params[:name].present? %>
+    what if <%= params[:letter] %>: </br>
+    <% case params[:letter] %>
+      <% when "a" %>
+      <%= params[:name].gsub(/[eiou]/, 'a').gsub(/[EIOU]/, 'A') %>
+      <% when "e" %>
+      <%= params[:name].gsub(/[aiou]/, 'e').gsub(/[AIOU]/, 'E') %>
+      <% when "i" %>
+      <%= params[:name].gsub(/[aeou]/, 'i').gsub(/[AEOU]/, 'I') %>
+      <% when "u" %>
+      <%= params[:name].gsub(/[aioe]/, 'u').gsub(/[AIOE]/, 'U') %>
+      <% when "o" %>
+      <%= params[:name].gsub(/[aeiu]/, 'o').gsub(/[AEIU]/, 'O') %>
+    <% end %>
+  <% end %>
+</div>

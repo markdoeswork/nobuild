@@ -2,3 +2,35 @@
 <p>Name: <%= @name %></p>
 <p>Age: <%= @age %></p>
 This is the view component
+    <div class="react-root" data-controller="react"> </div>
+    <div data-controller="example">
+      <%= text_field_tag :name,'', data: { action: 'input->example#search', target: 'example.params' } %>
+    </div>
+    <div data-controller="example">
+      <%= text_field_tag :age,'', data: { action: 'input->example#search', target: 'example.params' } %>
+    </div>
+<input list="options" name="option_display" id="option_display" placeholder="Type to search..." oninput="updateValue()">
+<datalist id="options">
+  <option data-value="New Jersey" value="Duckky">
+  <option value="New York">
+  <option value="Nevada">
+  <!-- Add more options as needed -->
+</datalist>
+<input type="hidden" name="option" id="option">
+
+<script>
+function updateValue() {
+  var displayInput = document.getElementById('option_display');
+  var hiddenInput = document.getElementById('option');
+  var option = document.querySelector('#options option[value="' + displayInput.value + '"]');
+
+  // Check if the option exists and has a data-value attribute
+  if (option && option.dataset.value) {
+    hiddenInput.value = option.dataset.value; // Set the hidden input's value to the data-value of the selected option
+  } else {
+    hiddenInput.value = displayInput.value; // Fallback to the display input's value if no data-value is found
+  }
+}
+</script>
+
+This is after data controller
